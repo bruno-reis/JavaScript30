@@ -105,48 +105,48 @@ When a user clicks a checkbox, holds Shift, and then clicks another checkbox a f
 
 <script>
   //my Solution
-  //  const checkboxes = Array.from(document.querySelectorAll('.inbox input[type="checkbox"]'));
-  //  let first = -1;
-  //  let last = -1;
-  //
-  //  function clicked(e) {
-  //    if (this.checked && !e.shiftKey) first = checkboxes.indexOf(this);
-  //
-  //    if (this.checked && e.shiftKey) {
-  //      last = checkboxes.indexOf(this);
-  //
-  //      let start = first < last ? first : last;
-  //      let end = first < last ? last : first;
-  //
-  //      for (let i = start; i < end; i++) {
-  //        checkboxes[i].checked = true;
-  //      }
-  //    }
-  //  }
-  //
-  //  checkboxes.forEach( c => c.addEventListener('click', clicked));
+  const checkboxes = Array.from(document.querySelectorAll('.inbox input[type="checkbox"]'));
+  let first = -1;
+  let last = -1;
 
-  //video Solution
-  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
-  let lastChecked;
+  function clicked(e) {
+    if (this.checked && !e.shiftKey) first = checkboxes.indexOf(this);
 
-  function handleCheck(e) {
-    // Check if they had the shift key down
-    // AND check that they are checking it
-    let inBetween = false;
-    if (e.shiftKey && this.checked) {
-      // go ahead and do what we please
-      // loop over every single checkbox
-      checkboxes.forEach(checkbox => {
-        if (checkbox === this || checkbox === lastChecked) inBetween = !inBetween;
+    if (this.checked && e.shiftKey) {
+      last = checkboxes.indexOf(this);
 
-        if (inBetween) checkbox.checked = true;
-      });
+      let start = first < last ? first : last;
+      let end = first < last ? last : first;
+
+      for (let i = start; i < end; i++) {
+        checkboxes[i].checked = true;
+      }
     }
-    lastChecked = this;
   }
 
-  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+  checkboxes.forEach( c => c.addEventListener('click', clicked));
+
+  //video Solution
+  //  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+  //  let lastChecked;
+  //
+  //  function handleCheck(e) {
+  //    // Check if they had the shift key down
+  //    // AND check that they are checking it
+  //    let inBetween = false;
+  //    if (e.shiftKey && this.checked) {
+  //      // go ahead and do what we please
+  //      // loop over every single checkbox
+  //      checkboxes.forEach(checkbox => {
+  //        if (checkbox === this || checkbox === lastChecked) inBetween = !inBetween;
+  //
+  //        if (inBetween) checkbox.checked = true;
+  //      });
+  //    }
+  //    lastChecked = this;
+  //  }
+  //
+  //  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
 
 </script>
 </body>
